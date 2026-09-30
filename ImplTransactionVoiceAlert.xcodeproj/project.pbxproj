@@ -1,0 +1,856 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		388FB8EE306BA77400DE3D70 /* VoiceAlertDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB8EB306BA77400DE3D70 /* VoiceAlertDemoView.swift */; };
+		388FB8EF306BA77400DE3D70 /* ImplTransactionVoiceAlertApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB8EC306BA77400DE3D70 /* ImplTransactionVoiceAlertApp.swift */; };
+		388FB8F0306BA77400DE3D70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 388FB8EA306BA77400DE3D70 /* Assets.xcassets */; };
+		388FB8F3306BA77800DE3D70 /* ImplTransactionVoiceAlertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB8F1306BA77800DE3D70 /* ImplTransactionVoiceAlertTests.swift */; };
+		388FB8F7306BA79800DE3D70 /* ImplTransactionVoiceAlertUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB8F4306BA79800DE3D70 /* ImplTransactionVoiceAlertUITests.swift */; };
+		388FB8F8306BA79800DE3D70 /* ImplTransactionVoiceAlertUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB8F5306BA79800DE3D70 /* ImplTransactionVoiceAlertUITestsLaunchTests.swift */; };
+		388FB904306BA7D000DE3D70 /* NotificationService.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 388FB8FD306BA7CF00DE3D70 /* NotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		388FB90D306BA7D700DE3D70 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB90B306BA7D700DE3D70 /* NotificationService.swift */; };
+		388FB91B306BA86E00DE3D70 /* SpeechLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB918306BA86E00DE3D70 /* SpeechLanguage.swift */; };
+		388FB91C306BA86E00DE3D70 /* SpeechVoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB919306BA86E00DE3D70 /* SpeechVoice.swift */; };
+		388FB91E306BA88100DE3D70 /* SpeechCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB91D306BA88100DE3D70 /* SpeechCurrency.swift */; };
+		388FB922306BA8F000DE3D70 /* AppGroupStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB921306BA8D700DE3D70 /* AppGroupStorageManager.swift */; };
+		388FB923306BAA8100DE3D70 /* SpeechCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB91D306BA88100DE3D70 /* SpeechCurrency.swift */; };
+		388FB924306BAA8500DE3D70 /* SpeechLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB918306BA86E00DE3D70 /* SpeechLanguage.swift */; };
+		388FB925306BAA8A00DE3D70 /* SpeechVoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB919306BA86E00DE3D70 /* SpeechVoice.swift */; };
+		388FB926306BAA9200DE3D70 /* AppGroupStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB921306BA8D700DE3D70 /* AppGroupStorageManager.swift */; };
+		388FB92C306BAAC600DE3D70 /* AudioAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 388FB92A306BAAC600DE3D70 /* AudioAssets.xcassets */; };
+		388FB92D306BAACC00DE3D70 /* AudioAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 388FB92A306BAAC600DE3D70 /* AudioAssets.xcassets */; };
+		388FB930306BAB0900DE3D70 /* SpeechSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB92F306BAB0900DE3D70 /* SpeechSequence.swift */; };
+		388FB931306BAB0900DE3D70 /* SpeechSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB92F306BAB0900DE3D70 /* SpeechSequence.swift */; };
+		388FB933306BAB1600DE3D70 /* AudioComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB932306BAB1600DE3D70 /* AudioComposer.swift */; };
+		388FB934306BAB1600DE3D70 /* AudioComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB932306BAB1600DE3D70 /* AudioComposer.swift */; };
+		388FB939306BAE3800DE3D70 /* VoiceAlertDemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB938306BAE3800DE3D70 /* VoiceAlertDemoViewModel.swift */; };
+		388FB94E306BB37300DE3D70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB94D306BB37300DE3D70 /* AppDelegate.swift */; };
+		38EBB8F1306C98BA00B90FB3 /* SpeechSequenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EBB8F0306C98BA00B90FB3 /* SpeechSequenceTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		388FB8CE306BA76E00DE3D70 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 388FB8B8306BA76C00DE3D70 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 388FB8BF306BA76C00DE3D70;
+			remoteInfo = ImplTransactionVoiceAlert;
+		};
+		388FB8D8306BA76E00DE3D70 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 388FB8B8306BA76C00DE3D70 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 388FB8BF306BA76C00DE3D70;
+			remoteInfo = ImplTransactionVoiceAlert;
+		};
+		388FB902306BA7D000DE3D70 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 388FB8B8306BA76C00DE3D70 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 388FB8FC306BA7CF00DE3D70;
+			remoteInfo = NotificationService;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		388FB909306BA7D000DE3D70 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				388FB904306BA7D000DE3D70 /* NotificationService.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		388FB8C0306BA76C00DE3D70 /* ImplTransactionVoiceAlert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImplTransactionVoiceAlert.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		388FB8CD306BA76E00DE3D70 /* ImplTransactionVoiceAlertTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImplTransactionVoiceAlertTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		388FB8D7306BA76E00DE3D70 /* ImplTransactionVoiceAlertUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImplTransactionVoiceAlertUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		388FB8EA306BA77400DE3D70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		388FB8EB306BA77400DE3D70 /* VoiceAlertDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceAlertDemoView.swift; sourceTree = "<group>"; };
+		388FB8EC306BA77400DE3D70 /* ImplTransactionVoiceAlertApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplTransactionVoiceAlertApp.swift; sourceTree = "<group>"; };
+		388FB8F1306BA77800DE3D70 /* ImplTransactionVoiceAlertTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplTransactionVoiceAlertTests.swift; sourceTree = "<group>"; };
+		388FB8F4306BA79800DE3D70 /* ImplTransactionVoiceAlertUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplTransactionVoiceAlertUITests.swift; sourceTree = "<group>"; };
+		388FB8F5306BA79800DE3D70 /* ImplTransactionVoiceAlertUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImplTransactionVoiceAlertUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		388FB8FD306BA7CF00DE3D70 /* NotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		388FB90A306BA7D700DE3D70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		388FB90B306BA7D700DE3D70 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		388FB918306BA86E00DE3D70 /* SpeechLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechLanguage.swift; sourceTree = "<group>"; };
+		388FB919306BA86E00DE3D70 /* SpeechVoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechVoice.swift; sourceTree = "<group>"; };
+		388FB91D306BA88100DE3D70 /* SpeechCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechCurrency.swift; sourceTree = "<group>"; };
+		388FB921306BA8D700DE3D70 /* AppGroupStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroupStorageManager.swift; sourceTree = "<group>"; };
+		388FB92A306BAAC600DE3D70 /* AudioAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AudioAssets.xcassets; sourceTree = "<group>"; };
+		388FB92F306BAB0900DE3D70 /* SpeechSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSequence.swift; sourceTree = "<group>"; };
+		388FB932306BAB1600DE3D70 /* AudioComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioComposer.swift; sourceTree = "<group>"; };
+		388FB935306BAC6900DE3D70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		388FB938306BAE3800DE3D70 /* VoiceAlertDemoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceAlertDemoViewModel.swift; sourceTree = "<group>"; };
+		388FB940306BB32600DE3D70 /* ImplTransactionVoiceAlert.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ImplTransactionVoiceAlert.entitlements; sourceTree = "<group>"; };
+		388FB94C306BB35300DE3D70 /* NotificationService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationService.entitlements; sourceTree = "<group>"; };
+		388FB94D306BB37300DE3D70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		38EBB8F0306C98BA00B90FB3 /* SpeechSequenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSequenceTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		388FB8BD306BA76C00DE3D70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		388FB8CA306BA76E00DE3D70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		388FB8D4306BA76E00DE3D70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		388FB8FA306BA7CF00DE3D70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		388FB8B7306BA76C00DE3D70 = {
+			isa = PBXGroup;
+			children = (
+				388FB8ED306BA77400DE3D70 /* ImplTransactionVoiceAlert */,
+				388FB8F2306BA77800DE3D70 /* ImplTransactionVoiceAlertTests */,
+				388FB8F6306BA79800DE3D70 /* ImplTransactionVoiceAlertUITests */,
+				388FB90C306BA7D700DE3D70 /* NotificationService */,
+				388FB8C1306BA76C00DE3D70 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		388FB8C1306BA76C00DE3D70 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				388FB8C0306BA76C00DE3D70 /* ImplTransactionVoiceAlert.app */,
+				388FB8CD306BA76E00DE3D70 /* ImplTransactionVoiceAlertTests.xctest */,
+				388FB8D7306BA76E00DE3D70 /* ImplTransactionVoiceAlertUITests.xctest */,
+				388FB8FD306BA7CF00DE3D70 /* NotificationService.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		388FB8ED306BA77400DE3D70 /* ImplTransactionVoiceAlert */ = {
+			isa = PBXGroup;
+			children = (
+				388FB94D306BB37300DE3D70 /* AppDelegate.swift */,
+				388FB940306BB32600DE3D70 /* ImplTransactionVoiceAlert.entitlements */,
+				388FB938306BAE3800DE3D70 /* VoiceAlertDemoViewModel.swift */,
+				388FB935306BAC6900DE3D70 /* Info.plist */,
+				388FB92B306BAAC600DE3D70 /* Resources */,
+				388FB912306BA82000DE3D70 /* Shared */,
+				388FB8EA306BA77400DE3D70 /* Assets.xcassets */,
+				388FB8EB306BA77400DE3D70 /* VoiceAlertDemoView.swift */,
+				388FB8EC306BA77400DE3D70 /* ImplTransactionVoiceAlertApp.swift */,
+			);
+			path = ImplTransactionVoiceAlert;
+			sourceTree = "<group>";
+		};
+		388FB8F2306BA77800DE3D70 /* ImplTransactionVoiceAlertTests */ = {
+			isa = PBXGroup;
+			children = (
+				38EBB8F0306C98BA00B90FB3 /* SpeechSequenceTests.swift */,
+				388FB8F1306BA77800DE3D70 /* ImplTransactionVoiceAlertTests.swift */,
+			);
+			path = ImplTransactionVoiceAlertTests;
+			sourceTree = "<group>";
+		};
+		388FB8F6306BA79800DE3D70 /* ImplTransactionVoiceAlertUITests */ = {
+			isa = PBXGroup;
+			children = (
+				388FB8F4306BA79800DE3D70 /* ImplTransactionVoiceAlertUITests.swift */,
+				388FB8F5306BA79800DE3D70 /* ImplTransactionVoiceAlertUITestsLaunchTests.swift */,
+			);
+			path = ImplTransactionVoiceAlertUITests;
+			sourceTree = "<group>";
+		};
+		388FB90C306BA7D700DE3D70 /* NotificationService */ = {
+			isa = PBXGroup;
+			children = (
+				388FB94C306BB35300DE3D70 /* NotificationService.entitlements */,
+				388FB90A306BA7D700DE3D70 /* Info.plist */,
+				388FB90B306BA7D700DE3D70 /* NotificationService.swift */,
+			);
+			path = NotificationService;
+			sourceTree = "<group>";
+		};
+		388FB912306BA82000DE3D70 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				388FB920306BA8AA00DE3D70 /* Storages */,
+				388FB91A306BA86E00DE3D70 /* TransactionVoiceAlert */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		388FB91A306BA86E00DE3D70 /* TransactionVoiceAlert */ = {
+			isa = PBXGroup;
+			children = (
+				388FB932306BAB1600DE3D70 /* AudioComposer.swift */,
+				388FB92F306BAB0900DE3D70 /* SpeechSequence.swift */,
+				388FB91D306BA88100DE3D70 /* SpeechCurrency.swift */,
+				388FB918306BA86E00DE3D70 /* SpeechLanguage.swift */,
+				388FB919306BA86E00DE3D70 /* SpeechVoice.swift */,
+			);
+			path = TransactionVoiceAlert;
+			sourceTree = "<group>";
+		};
+		388FB920306BA8AA00DE3D70 /* Storages */ = {
+			isa = PBXGroup;
+			children = (
+				388FB921306BA8D700DE3D70 /* AppGroupStorageManager.swift */,
+			);
+			path = Storages;
+			sourceTree = "<group>";
+		};
+		388FB92B306BAAC600DE3D70 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				388FB92A306BAAC600DE3D70 /* AudioAssets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		388FB8BF306BA76C00DE3D70 /* ImplTransactionVoiceAlert */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 388FB8E1306BA76E00DE3D70 /* Build configuration list for PBXNativeTarget "ImplTransactionVoiceAlert" */;
+			buildPhases = (
+				388FB8BC306BA76C00DE3D70 /* Sources */,
+				388FB8BD306BA76C00DE3D70 /* Frameworks */,
+				388FB8BE306BA76C00DE3D70 /* Resources */,
+				388FB909306BA7D000DE3D70 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				388FB903306BA7D000DE3D70 /* PBXTargetDependency */,
+			);
+			name = ImplTransactionVoiceAlert;
+			packageProductDependencies = (
+			);
+			productName = ImplTransactionVoiceAlert;
+			productReference = 388FB8C0306BA76C00DE3D70 /* ImplTransactionVoiceAlert.app */;
+			productType = "com.apple.product-type.application";
+		};
+		388FB8CC306BA76E00DE3D70 /* ImplTransactionVoiceAlertTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 388FB8E4306BA76E00DE3D70 /* Build configuration list for PBXNativeTarget "ImplTransactionVoiceAlertTests" */;
+			buildPhases = (
+				388FB8C9306BA76E00DE3D70 /* Sources */,
+				388FB8CA306BA76E00DE3D70 /* Frameworks */,
+				388FB8CB306BA76E00DE3D70 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				388FB8CF306BA76E00DE3D70 /* PBXTargetDependency */,
+			);
+			name = ImplTransactionVoiceAlertTests;
+			packageProductDependencies = (
+			);
+			productName = ImplTransactionVoiceAlertTests;
+			productReference = 388FB8CD306BA76E00DE3D70 /* ImplTransactionVoiceAlertTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		388FB8D6306BA76E00DE3D70 /* ImplTransactionVoiceAlertUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 388FB8E7306BA76E00DE3D70 /* Build configuration list for PBXNativeTarget "ImplTransactionVoiceAlertUITests" */;
+			buildPhases = (
+				388FB8D3306BA76E00DE3D70 /* Sources */,
+				388FB8D4306BA76E00DE3D70 /* Frameworks */,
+				388FB8D5306BA76E00DE3D70 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				388FB8D9306BA76E00DE3D70 /* PBXTargetDependency */,
+			);
+			name = ImplTransactionVoiceAlertUITests;
+			packageProductDependencies = (
+			);
+			productName = ImplTransactionVoiceAlertUITests;
+			productReference = 388FB8D7306BA76E00DE3D70 /* ImplTransactionVoiceAlertUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		388FB8FC306BA7CF00DE3D70 /* NotificationService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 388FB906306BA7D000DE3D70 /* Build configuration list for PBXNativeTarget "NotificationService" */;
+			buildPhases = (
+				388FB8F9306BA7CF00DE3D70 /* Sources */,
+				388FB8FA306BA7CF00DE3D70 /* Frameworks */,
+				388FB8FB306BA7CF00DE3D70 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotificationService;
+			packageProductDependencies = (
+			);
+			productName = NotificationService;
+			productReference = 388FB8FD306BA7CF00DE3D70 /* NotificationService.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		388FB8B8306BA76C00DE3D70 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2650;
+				LastUpgradeCheck = 2650;
+				TargetAttributes = {
+					388FB8BF306BA76C00DE3D70 = {
+						CreatedOnToolsVersion = 26.5;
+					};
+					388FB8CC306BA76E00DE3D70 = {
+						CreatedOnToolsVersion = 26.5;
+						TestTargetID = 388FB8BF306BA76C00DE3D70;
+					};
+					388FB8D6306BA76E00DE3D70 = {
+						CreatedOnToolsVersion = 26.5;
+						TestTargetID = 388FB8BF306BA76C00DE3D70;
+					};
+					388FB8FC306BA7CF00DE3D70 = {
+						CreatedOnToolsVersion = 26.5;
+					};
+				};
+			};
+			buildConfigurationList = 388FB8BB306BA76C00DE3D70 /* Build configuration list for PBXProject "ImplTransactionVoiceAlert" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 388FB8B7306BA76C00DE3D70;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 388FB8C1306BA76C00DE3D70 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				388FB8BF306BA76C00DE3D70 /* ImplTransactionVoiceAlert */,
+				388FB8CC306BA76E00DE3D70 /* ImplTransactionVoiceAlertTests */,
+				388FB8D6306BA76E00DE3D70 /* ImplTransactionVoiceAlertUITests */,
+				388FB8FC306BA7CF00DE3D70 /* NotificationService */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		388FB8BE306BA76C00DE3D70 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				388FB8F0306BA77400DE3D70 /* Assets.xcassets in Resources */,
+				388FB92C306BAAC600DE3D70 /* AudioAssets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		388FB8CB306BA76E00DE3D70 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		388FB8D5306BA76E00DE3D70 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		388FB8FB306BA7CF00DE3D70 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				388FB92D306BAACC00DE3D70 /* AudioAssets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		388FB8BC306BA76C00DE3D70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				388FB934306BAB1600DE3D70 /* AudioComposer.swift in Sources */,
+				388FB939306BAE3800DE3D70 /* VoiceAlertDemoViewModel.swift in Sources */,
+				388FB91E306BA88100DE3D70 /* SpeechCurrency.swift in Sources */,
+				388FB8EE306BA77400DE3D70 /* VoiceAlertDemoView.swift in Sources */,
+				388FB91B306BA86E00DE3D70 /* SpeechLanguage.swift in Sources */,
+				388FB922306BA8F000DE3D70 /* AppGroupStorageManager.swift in Sources */,
+				388FB930306BAB0900DE3D70 /* SpeechSequence.swift in Sources */,
+				388FB91C306BA86E00DE3D70 /* SpeechVoice.swift in Sources */,
+				388FB94E306BB37300DE3D70 /* AppDelegate.swift in Sources */,
+				388FB8EF306BA77400DE3D70 /* ImplTransactionVoiceAlertApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		388FB8C9306BA76E00DE3D70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38EBB8F1306C98BA00B90FB3 /* SpeechSequenceTests.swift in Sources */,
+				388FB8F3306BA77800DE3D70 /* ImplTransactionVoiceAlertTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		388FB8D3306BA76E00DE3D70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				388FB8F7306BA79800DE3D70 /* ImplTransactionVoiceAlertUITests.swift in Sources */,
+				388FB8F8306BA79800DE3D70 /* ImplTransactionVoiceAlertUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		388FB8F9306BA7CF00DE3D70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				388FB931306BAB0900DE3D70 /* SpeechSequence.swift in Sources */,
+				388FB923306BAA8100DE3D70 /* SpeechCurrency.swift in Sources */,
+				388FB924306BAA8500DE3D70 /* SpeechLanguage.swift in Sources */,
+				388FB933306BAB1600DE3D70 /* AudioComposer.swift in Sources */,
+				388FB926306BAA9200DE3D70 /* AppGroupStorageManager.swift in Sources */,
+				388FB925306BAA8A00DE3D70 /* SpeechVoice.swift in Sources */,
+				388FB90D306BA7D700DE3D70 /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		388FB8CF306BA76E00DE3D70 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 388FB8BF306BA76C00DE3D70 /* ImplTransactionVoiceAlert */;
+			targetProxy = 388FB8CE306BA76E00DE3D70 /* PBXContainerItemProxy */;
+		};
+		388FB8D9306BA76E00DE3D70 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 388FB8BF306BA76C00DE3D70 /* ImplTransactionVoiceAlert */;
+			targetProxy = 388FB8D8306BA76E00DE3D70 /* PBXContainerItemProxy */;
+		};
+		388FB903306BA7D000DE3D70 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 388FB8FC306BA7CF00DE3D70 /* NotificationService */;
+			targetProxy = 388FB902306BA7D000DE3D70 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		388FB8DF306BA76E00DE3D70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = H48V353M64;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		388FB8E0306BA76E00DE3D70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = H48V353M64;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		388FB8E2306BA76E00DE3D70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ImplTransactionVoiceAlert/ImplTransactionVoiceAlert.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NY28UPWMBF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ImplTransactionVoiceAlert/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lengdev.imp-ltrx-voice-alert";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		388FB8E3306BA76E00DE3D70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ImplTransactionVoiceAlert/ImplTransactionVoiceAlert.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NY28UPWMBF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ImplTransactionVoiceAlert/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lengdev.imp-ltrx-voice-alert";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		388FB8E5306BA76E00DE3D70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H48V353M64;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lengdev.impl-transaction-voice-alert.ImplTransactionVoiceAlertTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ImplTransactionVoiceAlert.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ImplTransactionVoiceAlert";
+			};
+			name = Debug;
+		};
+		388FB8E6306BA76E00DE3D70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H48V353M64;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lengdev.impl-transaction-voice-alert.ImplTransactionVoiceAlertTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ImplTransactionVoiceAlert.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ImplTransactionVoiceAlert";
+			};
+			name = Release;
+		};
+		388FB8E8306BA76E00DE3D70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H48V353M64;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lengdev.impl-transaction-voice-alert.ImplTransactionVoiceAlertUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ImplTransactionVoiceAlert;
+			};
+			name = Debug;
+		};
+		388FB8E9306BA76E00DE3D70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H48V353M64;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lengdev.impl-transaction-voice-alert.ImplTransactionVoiceAlertUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ImplTransactionVoiceAlert;
+			};
+			name = Release;
+		};
+		388FB907306BA7D000DE3D70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = NotificationService/NotificationService.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NBSAW3G27X;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotificationService;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lengdev.imp-ltrx-voice-alert.notification-service";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		388FB908306BA7D000DE3D70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = NotificationService/NotificationService.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NBSAW3G27X;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotificationService;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lengdev.imp-ltrx-voice-alert.notification-service";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		388FB8BB306BA76C00DE3D70 /* Build configuration list for PBXProject "ImplTransactionVoiceAlert" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				388FB8DF306BA76E00DE3D70 /* Debug */,
+				388FB8E0306BA76E00DE3D70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		388FB8E1306BA76E00DE3D70 /* Build configuration list for PBXNativeTarget "ImplTransactionVoiceAlert" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				388FB8E2306BA76E00DE3D70 /* Debug */,
+				388FB8E3306BA76E00DE3D70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		388FB8E4306BA76E00DE3D70 /* Build configuration list for PBXNativeTarget "ImplTransactionVoiceAlertTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				388FB8E5306BA76E00DE3D70 /* Debug */,
+				388FB8E6306BA76E00DE3D70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		388FB8E7306BA76E00DE3D70 /* Build configuration list for PBXNativeTarget "ImplTransactionVoiceAlertUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				388FB8E8306BA76E00DE3D70 /* Debug */,
+				388FB8E9306BA76E00DE3D70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		388FB906306BA7D000DE3D70 /* Build configuration list for PBXNativeTarget "NotificationService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				388FB907306BA7D000DE3D70 /* Debug */,
+				388FB908306BA7D000DE3D70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 388FB8B8306BA76C00DE3D70 /* Project object */;
+}
