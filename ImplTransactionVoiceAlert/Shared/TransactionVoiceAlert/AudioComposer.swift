@@ -2,143 +2,32 @@
 //  AudioComposer.swift
 //  ImplTransactionVoiceAlert
 //
-//  Created by Houleng.LY on 29/9/26.
-//
 
 import AVFoundation
 import Accelerate
 
 class AudioComposer {
-    /// Read an entire AVAudioFile into a Float array (mono assumed; extend per-channel if needed).
-    private func readAllSamples(_ file: AVAudioFile) throws -> [Float] {
-        let format = file.processingFormat
-        guard let buffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: AVAudioFrameCount(file.length)) else {
-            throw NSError(domain: "MergeAudio", code: -4)
-        }
-        try file.read(into: buffer)
-        guard let channelData = buffer.floatChannelData else {
-            throw NSError(domain: "MergeAudio", code: -5)
-        }
-        return Array(UnsafeBufferPointer(start: channelData[0], count: Int(buffer.frameLength)))
-    }
 
-    /// Very simple autocorrelation-based pitch period estimate (in samples) over a window.
-    /// minF0/maxF0 in Hz bound the search range.
-    private func estimatePitchPeriod(_ samples: [Float], sampleRate: Double,
-                                      minF0: Double = 75, maxF0: Double = 400) -> Int {
-        let minLag = Int(sampleRate / maxF0)
-        let maxLag = Int(sampleRate / minF0)
-        guard samples.count > maxLag * 2 else { return Int(sampleRate / 150) } // fallback ~150Hz
-        var bestLag = minLag
-        var bestCorr: Float = -.infinity
-        let n = min(samples.count - maxLag, 2048)
-        for lag in minLag...maxLag {
-            var corr: Float = 0
-            vDSP_dotpr(samples, 1, Array(samples[lag...]), 1, &corr, vDSP_Length(n))
-            if corr > bestCorr {
-                bestCorr = corr
-                bestLag = lag
-            }
-        }
-        return bestLag
-    }
+    // MARK: - Public API
 
-    /// Pitch marks via peak-picking on the signal energy envelope, spaced by the local period.
-    private func generatePitchMarks(_ samples: [Float], period: Int) -> [Int] {
-        var marks: [Int] = []
-        var pos = period / 2
-        // find the local max magnitude sample within +/- period/4 to act as an epoch anchor
-        while pos < samples.count {
-            let searchStart = max(0, pos - period / 4)
-            let searchEnd = min(samples.count - 1, pos + period / 4)
-            var peakIdx = pos
-            var peakVal: Float = -1
-            for i in searchStart...searchEnd {
-                let v = abs(samples[i])
-                if v > peakVal { peakVal = v; peakIdx = i }
-            }
-            marks.append(peakIdx)
-            pos = peakIdx + period
-        }
-        return marks
-    }
+    /// Merges the clips at `urls` into one mono 16-bit WAV at `outputURL`.
+    /// - Parameters:
+    ///   - speed: playback rate for every clip except the first (1.0 = unchanged).
+    ///   - enableStretch: apply `speed` via AVAudioUnitTimePitch.
+    ///   - fadeMs: crossfade length at each join, in milliseconds (10-30 is typical).
+    ///   - targetPeak: final peak level after normalization (0...1).
+    static func compose(urls: [URL],
+                        outputURL: URL,
+                        speed: Float = 1.0,
+                        fadeMs: Double = 20,
+                        targetPeak: Float = 0.85) throws {
 
-    private func hannWindow(_ length: Int) -> [Float] {
-        var w = [Float](repeating: 0, count: length)
-        vDSP_hann_window(&w, vDSP_Length(length), Int32(vDSP_HANN_NORM))
-        return w
-    }
-
-    // MARK: - Pitch-synchronous crossfade join
-
-    /// Crossfades the tail of `a` into the head of `b` using pitch-synchronous OLA windows.
-    /// `crossfadePeriods` = how many pitch periods to blend over (2-4 is typical).
-    private func psolaCrossfadeJoin(tail: [Float], head: [Float], sampleRate: Double,
-                                     crossfadePeriods: Int = 3) -> [Float] {
-        let periodA = estimatePitchPeriod(tail, sampleRate: sampleRate)
-        let periodB = estimatePitchPeriod(head, sampleRate: sampleRate)
-        let avgPeriod = (periodA + periodB) / 2
-        let fadeLen = avgPeriod * crossfadePeriods
-
-        guard tail.count >= fadeLen, head.count >= fadeLen else {
-            // not enough material to crossfade meaningfully — fall back to a short linear fade
-            return simpleLinearCrossfade(tail: tail, head: head, fadeLen: min(tail.count, head.count, 256))
-        }
-
-        let aRegion = Array(tail.suffix(fadeLen))
-        let bRegion = Array(head.prefix(fadeLen))
-
-        let marksA = generatePitchMarks(aRegion, period: periodA)
-        let marksB = generatePitchMarks(bRegion, period: periodB)
-
-        var out = [Float](repeating: 0, count: fadeLen)
-        var norm = [Float](repeating: 0, count: fadeLen)
-
-        // Overlap-add pitch periods from A (fading out) and B (fading in), each windowed with Hann.
-        func overlapAdd(_ samples: [Float], marks: [Int], period: Int, gainCurve: (Float) -> Float) {
-            let winLen = period * 2
-            let win = hannWindow(winLen)
-            for m in marks {
-                let start = m - period
-                guard start >= 0, start + winLen <= samples.count else { continue }
-                let t = Float(m) / Float(fadeLen) // 0...1 position within the crossfade
-                let gain = gainCurve(t)
-                for i in 0..<winLen {
-                    let outIdx = start + i
-                    guard outIdx >= 0, outIdx < fadeLen else { continue }
-                    let sample = samples[start + i] * win[i] * gain
-                    out[outIdx] += sample
-                    norm[outIdx] += win[i]
-                }
-            }
-        }
-
-        overlapAdd(aRegion, marks: marksA, period: periodA, gainCurve: { 1 - $0 }) // fade out
-        overlapAdd(bRegion, marks: marksB, period: periodB, gainCurve: { $0 })     // fade in
-
-        for i in 0..<fadeLen where norm[i] > 0.0001 {
-            out[i] /= norm[i]
-        }
-
-        return out
-    }
-
-    private func simpleLinearCrossfade(tail: [Float], head: [Float], fadeLen: Int) -> [Float] {
-        var out = [Float](repeating: 0, count: fadeLen)
-        for i in 0..<fadeLen {
-            let t = Float(i) / Float(fadeLen)
-            out[i] = tail[tail.count - fadeLen + i] * (1 - t) + head[i] * t
-        }
-        return out
-    }
-
-    static func compose(urls: [URL], outputURL: URL,speed: Float? = nil) throws {
-        guard let firstFile = try? AVAudioFile(forReading: urls[0]) else {
+        guard let firstURL = urls.first,
+              let firstFile = try? AVAudioFile(forReading: firstURL) else {
             throw NSError(domain: "MergeAudio", code: -1)
         }
-        let sampleRate = firstFile.processingFormat.sampleRate   // or a fixed 22050/24000
+        let sampleRate = firstFile.processingFormat.sampleRate
 
-        // Mono processing format (this replaces firstFile.processingFormat)
         guard let format = AVAudioFormat(commonFormat: .pcmFormatFloat32,
                                          sampleRate: sampleRate,
                                          channels: 1,
@@ -147,22 +36,26 @@ class AudioComposer {
         }
 
         let composer = AudioComposer()
+
+        // 1. Load every clip as mono Float at one sample rate (and optionally stretch)
         let clips = try urls.enumerated().map { i, url -> [Float] in
             let samples = try composer.loadAudioMono(url: url, targetRate: sampleRate)
-            if let speed {
-                return i == 0 ? samples
-                              : try composer.timeStretch(samples, rate: speed, sampleRate: sampleRate)
+            if i > 0 {
+                return try composer.timeStretch(samples, rate: speed, sampleRate: sampleRate)
             }
             return samples
         }
-        var allSamples = try composer.synthesizePitch(clips: clips, sampleRate: sampleRate)
 
-        // Optional: raise the level (your peak was ~0.23)
-        if let peak = allSamples.map({ abs($0) }).max(), peak > 0 {
-            let gain = 0.85 / peak
-            for i in allSamples.indices { allSamples[i] *= gain }
+        // 2. Trim, match loudness, crossfade
+        var allSamples = composer.joinClips(clips, sampleRate: sampleRate, fadeMs: fadeMs)
+        guard !allSamples.isEmpty else {
+            throw NSError(domain: "MergeAudio", code: -6)
         }
 
+        // 3. Normalize
+        composer.normalize(&allSamples, targetPeak: targetPeak)
+
+        // 4. Write
         guard let buffer = AVAudioPCMBuffer(pcmFormat: format,
                                             frameCapacity: AVAudioFrameCount(allSamples.count)) else {
             throw NSError(domain: "MergeAudio", code: -3)
@@ -175,7 +68,7 @@ class AudioComposer {
         let outputSettings: [String: Any] = [
             AVFormatIDKey: kAudioFormatLinearPCM,
             AVSampleRateKey: sampleRate,
-            AVNumberOfChannelsKey: 1,                 // was format.channelCount
+            AVNumberOfChannelsKey: 1,
             AVLinearPCMBitDepthKey: 16,
             AVLinearPCMIsFloatKey: false,
             AVLinearPCMIsBigEndianKey: false
@@ -184,12 +77,18 @@ class AudioComposer {
         let outputFile = try AVAudioFile(forWriting: outputURL, settings: outputSettings)
         try outputFile.write(from: buffer)
     }
-    
-    private func synthesizePitch(clips: [[Float]], sampleRate: Double) throws -> [Float] {
+
+    // MARK: - Joining
+
+    /// Trims each clip, matches its loudness to the audio so far, and joins it
+    /// with an equal-power crossfade. The fade removes exactly `fadeLen` samples from
+    /// the tail and returns exactly `fadeLen` samples, so nothing is lost or repeated.
+    private func joinClips(_ clips: [[Float]], sampleRate: Double, fadeMs: Double) -> [Float] {
         var allSamples: [Float] = []
+        let baseFade = max(1, Int(fadeMs / 1000.0 * sampleRate))
 
         for clip in clips {
-            var samples = trimSilence(clip)
+            var samples = trimSilence(clip, sampleRate: sampleRate)
             guard !samples.isEmpty else { continue }
 
             if allSamples.isEmpty {
@@ -199,33 +98,45 @@ class AudioComposer {
 
             matchLoudness(tail: allSamples, head: &samples)
 
-            // Clamp the fade so a bad pitch estimate can't produce a nonsense length
-            let period = max(1, estimatePitchPeriod(samples, sampleRate: sampleRate))
-            let maxFade = min(allSamples.count, samples.count) / 2
-            let fadeLen = min(period * 3, maxFade)
-
+            // Never fade over more than half of either side
+            let fadeLen = min(baseFade, allSamples.count / 2, samples.count / 2)
             guard fadeLen > 0 else {
                 allSamples.append(contentsOf: samples)
                 continue
             }
 
-            let tail = Array(allSamples.suffix(fadeLen))
-            let head = Array(samples.prefix(fadeLen))
-            let crossfaded = psolaCrossfadeJoin(tail: tail, head: head, sampleRate: sampleRate)
+            let fade = equalPowerCrossfade(tail: allSamples.suffix(fadeLen),
+                                           head: samples.prefix(fadeLen))
 
             allSamples.removeLast(fadeLen)
-            allSamples.append(contentsOf: crossfaded)
+            allSamples.append(contentsOf: fade)
             allSamples.append(contentsOf: samples.suffix(from: fadeLen))
         }
         return allSamples
     }
 
+    /// Fades `tail` out and `head` in with cos/sin gains (constant power).
+    /// Both slices must have the same length.
+    private func equalPowerCrossfade(tail: ArraySlice<Float>, head: ArraySlice<Float>) -> [Float] {
+        let n = min(tail.count, head.count)
+        var out = [Float](repeating: 0, count: n)
+        let denom = Float(max(n - 1, 1))
+        for i in 0..<n {
+            let t = Float(i) / denom
+            out[i] = tail[tail.startIndex + i] * cos(t * .pi / 2)
+                   + head[head.startIndex + i] * sin(t * .pi / 2)
+        }
+        return out
+    }
 
     // MARK: - Silence trimming
 
-    /// Trims leading/trailing silence below `thresholdDB` relative to peak.
-    private func trimSilence(_ samples: [Float], thresholdDB: Float = -40) -> [Float] {
+    /// Trims leading/trailing silence below `thresholdDB` relative to the peak,
+    /// keeping a 10 ms pad on each side.
+    private func trimSilence(_ samples: [Float], sampleRate: Double,
+                             thresholdDB: Float = -40) -> [Float] {
         guard !samples.isEmpty else { return samples }
+
         var peak: Float = 0
         vDSP_maxmgv(samples, 1, &peak, vDSP_Length(samples.count))
         guard peak > 0 else { return samples }
@@ -236,29 +147,43 @@ class AudioComposer {
         var end = samples.count - 1
         while end > start, abs(samples[end]) < threshold { end -= 1 }
 
-        // Keep a small pad (~10ms) so the PSOLA crossfade has clean pitch periods to work with
-        let padSamples = 441 // ~10ms @ 44.1kHz, adjust to your sampleRate
+        let padSamples = Int(0.01 * sampleRate)   // 10 ms at any sample rate
         let s = max(0, start - padSamples)
         let e = min(samples.count - 1, end + padSamples)
         return Array(samples[s...e])
     }
 
-    // MARK: - Loudness matching at the seam
+    // MARK: - Loudness
 
     /// Scales `head` so its RMS over `windowLen` samples matches `tail`'s RMS,
     /// preventing a perceptible volume jump at the join.
+    /// Skipped if either side is shorter than `windowLen`.
     private func matchLoudness(tail: [Float], head: inout [Float], windowLen: Int = 2048) {
         guard tail.count >= windowLen, head.count >= windowLen else { return }
+
         var tailRMS: Float = 0
         var headRMS: Float = 0
         vDSP_rmsqv(Array(tail.suffix(windowLen)), 1, &tailRMS, vDSP_Length(windowLen))
         vDSP_rmsqv(Array(head.prefix(windowLen)), 1, &headRMS, vDSP_Length(windowLen))
         guard headRMS > 0.0001 else { return }
-        let gain = min(max(tailRMS / headRMS, 0.5), 2.0) // clamp to avoid extreme correction
-        var g = gain
-        vDSP_vsmul(head, 1, &g, &head, 1, vDSP_Length(head.count))
+
+        var gain = min(max(tailRMS / headRMS, 0.5), 2.0)   // clamp extreme corrections
+        let source = head
+        vDSP_vsmul(source, 1, &gain, &head, 1, vDSP_Length(head.count))
     }
-    
+
+    /// Scales the whole signal so its peak equals `targetPeak`.
+    private func normalize(_ samples: inout [Float], targetPeak: Float) {
+        var peak: Float = 0
+        vDSP_maxmgv(samples, 1, &peak, vDSP_Length(samples.count))
+        guard peak > 0 else { return }
+        var gain = targetPeak / peak
+        let source = samples
+        vDSP_vsmul(source, 1, &gain, &samples, 1, vDSP_Length(samples.count))
+    }
+
+    // MARK: - Time stretch
+    /// Changes speed without changing pitch, using AVAudioUnitTimePitch offline.
     private func timeStretch(_ samples: [Float], rate: Float, sampleRate: Double) throws -> [Float] {
         guard rate != 1, !samples.isEmpty else { return samples }
 
@@ -267,7 +192,7 @@ class AudioComposer {
         let engine = AVAudioEngine()
         let player = AVAudioPlayerNode()
         let timePitch = AVAudioUnitTimePitch()
-        timePitch.rate = rate                       // 1.0...32.0; e.g. 1.25 = 25% faster, pitch preserved
+        timePitch.rate = rate                       // 1.0...32.0; e.g. 1.25 = 25% faster
 
         engine.attach(player)
         engine.attach(timePitch)
@@ -301,7 +226,10 @@ class AudioComposer {
         engine.stop()
         return out
     }
-    
+
+    // MARK: - Loading
+
+    /// Reads a file, converts it to mono Float32 at `targetRate`.
     func loadAudioMono(url: URL, targetRate: Double) throws -> [Float] {
         let file = try AVAudioFile(forReading: url)
         let inFormat = file.processingFormat

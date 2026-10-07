@@ -91,11 +91,11 @@ final class NotificationService: UNNotificationServiceExtension {
             throw SpeechError.invalidPayload
         }
         
-        let tokens = ["received"] + SpeechSequence(
+        let tokens = ["received"] + AmountSpeechClips(
             amount: amount,
             currency: currency,
             language: speechLanguage
-        ).serializeClips()
+        ).serialized()
 
         let fm = FileManager.default
         let workDir = fm.temporaryDirectory.appendingPathComponent(UUID().uuidString, isDirectory: true)
@@ -104,7 +104,7 @@ final class NotificationService: UNNotificationServiceExtension {
 
         let clips = try tokens.map { try writeClip(token: $0, to: workDir) }
         let merged = workDir.appendingPathComponent("merged.caf")
-        try AudioComposer.compose(urls: clips, outputURL: merged,speed: speechLanguage == .english ? 1.2 : nil)
+        try AudioComposer.compose(urls: clips, outputURL: merged,speed: 1.0)
         let soundName = "\(Config.soundFilePrefix)\(UUID().uuidString).caf"
         do {
             try installSound(from: merged, named: soundName)

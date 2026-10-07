@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>AppGroupID</key>
-	<string>group.com.chipmongbank.bankingapp.uat</string>
+	<string>group.com.lengdev.imp-ltrx-voice-alert</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionPointIdentifier</key>

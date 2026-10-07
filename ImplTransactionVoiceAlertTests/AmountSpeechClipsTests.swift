@@ -1,5 +1,5 @@
 //
-//  SpeechSequenceTests.swift
+//  AmountSpeechClipsTests.swift
 //  ImplTransactionVoiceAlert
 //
 //  Created by Houleng.LY on 30/9/26.
@@ -10,16 +10,16 @@
 import XCTest
 @testable import ImplTransactionVoiceAlert
 
-final class SpeechSequenceTests: XCTestCase {
+final class AmountSpeechClipsTests: XCTestCase {
 
     // MARK: - Helpers
 
     private func km(_ amount: String, _ currency: SpeechCurrency) -> [String] {
-        SpeechSequence(amount: amount, currency: currency, language: .khmer).serializeClips()
+        AmountSpeechClips(amount: amount, currency: currency, language: .khmer).serialized()
     }
 
     private func en(_ amount: String, _ currency: SpeechCurrency) -> [String] {
-        SpeechSequence(amount: amount, currency: currency, language: .english).serializeClips()
+        AmountSpeechClips(amount: amount, currency: currency, language: .english).serialized()
     }
 
     // =========================================================
@@ -84,9 +84,18 @@ final class SpeechSequenceTests: XCTestCase {
             ["100", "20", "3", "million", "400000", "50000", "6000", "700", "80", "9", "riel"]
         )
     }
-
-    func testKhmer_moreThanNineCharacters_returnsEmpty() {
-        XCTAssertEqual(km("1234567890", .KHR), [])
+    
+    
+    func testKhmer_AmountOverBillion_KHR() {
+        XCTAssertEqual(km("1,000,080,000", .KHR), ["1000","million","80000","riel"])
+        XCTAssertEqual(km("1,234,500,000", .KHR), ["1000","200","30","4","million","500000","riel"])
+        XCTAssertEqual(km("10,234,080,000", .KHR), ["10000","200","30","4","million","80000","riel"])
+    }
+    
+    func testKhmer_AmountOverBillion_USD() {
+        XCTAssertEqual(km("1,000,080,000.00", .USD), ["1000","million","80000","dollar"])
+        XCTAssertEqual(km("1,234,500,000.1", .USD), ["1000","200","30","4","million","500000","dollar","10","cent"])
+        XCTAssertEqual(km("10,234,500,000.50", .USD), ["10000","200","30","4","million","500000","dollar","50","cent"])
     }
 
     // =========================================================
@@ -99,25 +108,25 @@ final class SpeechSequenceTests: XCTestCase {
     }
 
     // =========================================================
-    // MARK: - Khmer: decimals / cents
+    // MARK: - Khmer: decimals / cent
     // =========================================================
 
-    func testKhmer_cents_twoDigits() {
+    func testKhmer_cent_twoDigits() {
         XCTAssertEqual(km("1.50", .USD), ["1", "dollar", "50", "cent"])
         XCTAssertEqual(km("12.34", .USD), ["10", "2", "dollar", "30", "4", "cent"])
     }
 
-    func testKhmer_cents_singleDigit_isPaddedToTens() {
-        // ".5" means 50 cents
+    func testKhmer_cent_singleDigit_isPaddedToTens() {
+        // ".5" means 50 cent
         XCTAssertEqual(km("1.5", .USD), ["1", "dollar", "50", "cent"])
     }
 
-    func testKhmer_cents_leadingZero() {
-        // ".05" means 5 cents
+    func testKhmer_cent_leadingZero() {
+        // ".05" means 5 cent
         XCTAssertEqual(km("1.05", .USD), ["1", "dollar", "5", "cent"])
     }
 
-    func testKhmer_cents_zeroIsIgnored() {
+    func testKhmer_cent_zeroIsIgnored() {
         XCTAssertEqual(km("1.00", .USD), ["1", "dollar"])
         XCTAssertEqual(km("1.0", .USD), ["1", "dollar"])
     }
@@ -128,6 +137,10 @@ final class SpeechSequenceTests: XCTestCase {
 
     func testKhmer_nonNumericDecimal_isIgnored() {
         XCTAssertEqual(km("1.ab", .USD), ["1", "dollar"])
+    }
+    
+    func testKhmer_numberMillion_USD() {
+        XCTAssertEqual(km("1,234,567.89", .USD), ["1000000", "200000", "30000", "4000", "500", "60", "7", "dollar", "80", "9", "cent"])
     }
 
     // =========================================================
@@ -146,23 +159,13 @@ final class SpeechSequenceTests: XCTestCase {
         XCTAssertEqual(km(".50", .USD), [])   // no integer part
     }
 
-    // =========================================================
-    // MARK: - Khmer: characterization of current quirks
-    // (Delete or update if you decide to fix the behaviour.)
-    // =========================================================
-
-    func testKhmer_limitCountsDecimalCharacters_quirk() {
-        // "1234567.89" is 10 characters, so it's rejected even though the integer part is small.
-        XCTAssertEqual(km("1234567.89", .USD), [])
-    }
+    
 
     func testKhmer_threeDecimalDigits_readAsCents_quirk() {
-        // "1.999" -> 999 cents
         XCTAssertEqual(km("1.999", .USD), ["1", "dollar", "900", "90", "9", "cent"])
     }
 
     func testKhmer_negativeNumber_dropsAmount_quirk() {
-        // Int("-5") parses, but decomposeNumber returns [] for negatives.
         XCTAssertEqual(km("-5", .USD), ["dollar"])
     }
 
@@ -193,43 +196,43 @@ final class SpeechSequenceTests: XCTestCase {
 
     func testEnglish_USD_hundreds() {
         XCTAssertEqual(en("100", .USD), ["1", "hundred", "dollars"])
-        XCTAssertEqual(en("101", .USD), ["1", "hundred", "and", "1", "dollars"])
-        XCTAssertEqual(en("342", .USD), ["3", "hundred", "and", "40", "2", "dollars"])
-        XCTAssertEqual(en("915", .USD), ["9", "hundred", "and", "15", "dollars"])
+        XCTAssertEqual(en("101", .USD), ["1", "hundred", "1", "dollars"])
+        XCTAssertEqual(en("342", .USD), ["3", "hundred", "40", "2", "dollars"])
+        XCTAssertEqual(en("915", .USD), ["9", "hundred", "15", "dollars"])
     }
 
     func testEnglish_USD_thousands() {
         XCTAssertEqual(en("1000", .USD), ["1", "thousand", "dollars"])
-        XCTAssertEqual(en("1001", .USD), ["1", "thousand", "and", "1", "dollars"])
+        XCTAssertEqual(en("1001", .USD), ["1", "thousand", "1", "dollars"])
         XCTAssertEqual(en("1100", .USD), ["1", "thousand", "1", "hundred", "dollars"])
         XCTAssertEqual(
             en("1234", .USD),
-            ["1", "thousand", "2", "hundred", "and", "30", "4", "dollars"]
+            ["1", "thousand", "2", "hundred", "30", "4", "dollars"]
         )
         XCTAssertEqual(en("21000", .USD), ["20", "1", "thousand", "dollars"])
     }
 
     func testEnglish_USD_millions() {
         XCTAssertEqual(en("1000000", .USD), ["1", "million", "dollars"])
-        XCTAssertEqual(en("1000005", .USD), ["1", "million", "and", "5", "dollars"])
+        XCTAssertEqual(en("1000005", .USD), ["1", "million", "5", "dollars"])
         XCTAssertEqual(
             en("2500000", .USD),
             ["2", "million", "5", "hundred", "thousand", "dollars"]
         )
     }
+    
+    // MARK: English: cent
 
-    // MARK: English: cents
-
-    func testEnglish_USD_centsOnly() {
+    func testEnglish_USD_centOnly() {
         XCTAssertEqual(en("0.01", .USD), ["1", "cent"])
-        XCTAssertEqual(en("0.50", .USD), ["50", "cents"])
-        XCTAssertEqual(en("0.99", .USD), ["90", "9", "cents"])
+        XCTAssertEqual(en("0.50", .USD), ["50", "cent"])
+        XCTAssertEqual(en("0.99", .USD), ["90", "9", "cent"])
     }
 
     func testEnglish_USD_dollarsAndCents() {
-        XCTAssertEqual(en("1.01", .USD), ["1", "dollar", "and", "1", "cent"])
-        XCTAssertEqual(en("1.50", .USD), ["1", "dollar", "and", "50", "cents"])
-        XCTAssertEqual(en("12.34", .USD), ["12", "dollars", "and", "30", "4", "cents"])
+        XCTAssertEqual(en("1.01", .USD), ["1", "dollar", "1", "cent"])
+        XCTAssertEqual(en("1.50", .USD), ["1", "dollar", "50", "cent"])
+        XCTAssertEqual(en("12.34", .USD), ["12", "dollars", "30", "4", "cent"])
     }
 
     func testEnglish_USD_zeroCentsIsOmitted() {
@@ -237,7 +240,7 @@ final class SpeechSequenceTests: XCTestCase {
     }
 
     func testEnglish_USD_roundsToNearestCent() {
-        XCTAssertEqual(en("1.005", .USD), ["1", "dollar", "and", "1", "cent"])   // .plain rounds half up
+        XCTAssertEqual(en("1.005", .USD), ["1", "dollar", "1", "cent"])   // .plain rounds half up
         XCTAssertEqual(en("1.004", .USD), ["1", "dollar"])
         XCTAssertEqual(en("0.999", .USD), ["1", "dollar"])                        // carries into dollars
     }
@@ -287,16 +290,15 @@ final class SpeechSequenceTests: XCTestCase {
     // =========================================================
 
     func testSerializeClips_dispatchesByLanguage() {
-        let khmer = SpeechSequence(amount: "1.50", currency: .USD, language: .khmer).serializeClips()
-        let english = SpeechSequence(amount: "1.50", currency: .USD, language: .english).serializeClips()
+        let khmer = AmountSpeechClips(amount: "1.50", currency: .USD, language: .khmer).serialized()
+        let english = AmountSpeechClips(amount: "1.50", currency: .USD, language: .english).serialized()
 
         XCTAssertEqual(khmer, ["1", "dollar", "50", "cent"])
-        XCTAssertEqual(english, ["1", "dollar", "and", "50", "cents"])
-        XCTAssertNotEqual(khmer, english)
+        XCTAssertEqual(english, ["1", "dollar", "50", "cent"])
     }
 
     func testInit_storesProperties() {
-        let seq = SpeechSequence(amount: "12", currency: .KHR, language: .khmer)
+        let seq = AmountSpeechClips(amount: "12", currency: .KHR, language: .khmer)
         XCTAssertEqual(seq.amount, "12")
         XCTAssertEqual(seq.currency, .KHR)
         XCTAssertEqual(seq.language, .khmer)

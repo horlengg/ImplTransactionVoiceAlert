@@ -1,0 +1,30 @@
+{
+  "configurations" : [
+    {
+      "id" : "0D7ED335-B5EF-40D2-8543-0A210314A8B9",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "performanceAntipatternCheckerEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:ImplTransactionVoiceAlert.xcodeproj",
+      "identifier" : "388FB8BF306BA76C00DE3D70",
+      "name" : "ImplTransactionVoiceAlert"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:ImplTransactionVoiceAlert.xcodeproj",
+        "identifier" : "388FB8CC306BA76E00DE3D70",
+        "name" : "ImplTransactionVoiceAlertTests"
+      }
+    }
+  ],
+  "version" : 1
+}

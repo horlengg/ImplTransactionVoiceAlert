@@ -1,5 +1,5 @@
 //
-//  SpeechSequence.swift
+//  AmountSpeechClips.swift
 //  ImplTransactionVoiceAlert
 //
 //  Created by Houleng.LY on 29/9/26.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SpeechSequence {
+struct AmountSpeechClips {
     
     let amount: String
     let currency: SpeechCurrency
@@ -19,7 +19,7 @@ struct SpeechSequence {
         self.language = language
     }
     
-    func serializeClips() -> [String] {
+    func serialized() -> [String] {
         if language == .khmer {
             return toKhmerClips()
         }
@@ -31,9 +31,9 @@ struct SpeechSequence {
         var cleanAmt = amount.replacingOccurrences(of: " ", with: "")
         cleanAmt = cleanAmt.replacingOccurrences(of: ",", with: "")
         
-        if cleanAmt.count > 9 {
-            return []
-        }
+//        if cleanAmt.count > 9 {
+//            return []
+//        }
         
         // Parse integer and decimal parts
         let parts = cleanAmt.components(separatedBy: ".")
@@ -87,7 +87,7 @@ struct SpeechSequence {
         // Millions: only use "million" word for 11,000,000 and above
         if remaining >= 11_000_000 {
             let millions = remaining / 1_000_000
-            result.append(contentsOf: decomposeBelow1000(millions))
+            result.append(contentsOf: decomposeNumber(millions))   // was decomposeBelow1000
             result.append("million")
             remaining %= 1_000_000
         }
@@ -188,9 +188,9 @@ struct SpeechSequence {
                 out.append(dollars == 1 ? "dollar" : "dollars")
             }
             if cents > 0 {
-                if dollars > 0 { out.append("and") }
+//                if dollars > 0 { out.append("and") }
                 out += words(cents)
-                out.append(cents == 1 ? "cent" : "cents")
+                out.append("cent")
             }
 
         case .KHR:
@@ -204,30 +204,27 @@ struct SpeechSequence {
         n == 0 ? ["zero"] : spell(n)
     }
 
-    private let small = ["0", "1", "2", "3", "4", "5", "6", "7",
-                                "8", "9", "10", "11", "12", "13",
-                                "14", "15", "16", "17", "18",
-                                "19", "20"]
 
     private func spell(_ n: Int) -> [String] {
         guard n > 0 else { return [] }
 
-        if n <= 20 { return [small[n]] }
+        if n <= 20 { return [String(n)] }
         if n < 100 {
             let t = n / 10 * 10, o = n % 10
-            return [String(t)] + (o > 0 ? [small[o]] : [])
+            return [String(t)] + (o > 0 ? [String(o)] : [])
         }
         if n < 1_000 {
             let rest = n % 100
-            return [small[n / 100], "hundred"] + (rest > 0 ? ["and"] + spell(rest) : [])
+            return [String(n / 100), "hundred"] + (rest > 0 ? spell(rest) : [])
         }
 
         let (unit, name) = n >= 1_000_000 ? (1_000_000, "million") : (1_000, "thousand")
         let rest = n % unit
         var out = spell(n / unit) + [name]
         if rest > 0 {
-            out += (rest < 100 ? ["and"] : []) + spell(rest)
+            out += spell(rest)
         }
         return out
     }
+    
 }

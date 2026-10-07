@@ -13,8 +13,8 @@ import AVFAudio
 final class VoiceAlertDemoViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
 
     // Input
-    @Published var amount = "100.50"
-    @Published var currency: SpeechCurrency = .USD
+    @Published var amount = "1250000"
+    @Published var currency: SpeechCurrency = .KHR
     @Published var language: SpeechLanguage = .khmer
     @Published var voice: SpeechVoice = SpeechVoice.allCases[0]
 
@@ -57,7 +57,8 @@ final class VoiceAlertDemoViewModel: NSObject, ObservableObject, AVAudioPlayerDe
                     try await Self.buildAudio(amount: amount,
                                         currency: currency,
                                         language: language,
-                                        voice: voice)
+                                        voice: voice
+                    )
                 }.value
 
                 tokens = result.tokens
@@ -70,6 +71,11 @@ final class VoiceAlertDemoViewModel: NSObject, ObservableObject, AVAudioPlayerDe
                 let player = try AVAudioPlayer(contentsOf: result.url)
                 player.delegate = self
                 player.prepareToPlay()
+                
+                // Get duration in seconds (Double)
+                let durationInSeconds = player.duration
+                print("Audio duration: \(durationInSeconds) seconds")
+                
                 player.play()
                 self.player = player
                 isPlaying = true
@@ -91,6 +97,7 @@ final class VoiceAlertDemoViewModel: NSObject, ObservableObject, AVAudioPlayerDe
     /// Keeps only digits and a single ".", with at most 9 integer digits
     /// (the Khmer sequence rejects longer numbers) and 2 decimal places.
     static func sanitizeAmount(_ raw: String) -> String {
+        let maxIntegerDigits = 15
         var result = ""
         var seenDot = false
         var integerDigits = 0
@@ -102,7 +109,7 @@ final class VoiceAlertDemoViewModel: NSObject, ObservableObject, AVAudioPlayerDe
                     guard decimalDigits < 2 else { continue }
                     decimalDigits += 1
                 } else {
-                    guard integerDigits < 9 else { continue }
+                    guard integerDigits < maxIntegerDigits else { continue }
                     integerDigits += 1
                 }
                 result.append(ch)
@@ -128,9 +135,9 @@ final class VoiceAlertDemoViewModel: NSObject, ObservableObject, AVAudioPlayerDe
         voice: SpeechVoice
     ) throws -> (url: URL, tokens: [String]) {
 
-        let clipTokens = SpeechSequence(amount: amount,
+        let clipTokens = AmountSpeechClips(amount: amount,
                                         currency: currency,
-                                        language: language).serializeClips()
+                                        language: language).serialized()
         guard !clipTokens.isEmpty else { throw PlayerError.invalidAmount }
 
         let tokens = ["received"] + clipTokens
@@ -157,7 +164,7 @@ final class VoiceAlertDemoViewModel: NSObject, ObservableObject, AVAudioPlayerDe
             .appendingPathComponent("paysound-preview-\(UUID().uuidString).caf")
         try AudioComposer.compose(urls: clipURLs,
                                   outputURL: output,
-                                  speed: language == .english ? 1.2 : nil)
+                                  speed: language == .english ? 1.1 : 1.0)
         return (output, tokens)
     }
 

@@ -52,7 +52,9 @@ struct VoiceAlertDemoView: View {
                     Button("Done") { amountFocused = false }
                 }
             }
+            
         }
+        
     }
 
     // MARK: Sections

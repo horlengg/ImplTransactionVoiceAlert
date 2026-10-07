@@ -25,13 +25,13 @@
 		388FB926306BAA9200DE3D70 /* AppGroupStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB921306BA8D700DE3D70 /* AppGroupStorageManager.swift */; };
 		388FB92C306BAAC600DE3D70 /* AudioAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 388FB92A306BAAC600DE3D70 /* AudioAssets.xcassets */; };
 		388FB92D306BAACC00DE3D70 /* AudioAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 388FB92A306BAAC600DE3D70 /* AudioAssets.xcassets */; };
-		388FB930306BAB0900DE3D70 /* SpeechSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB92F306BAB0900DE3D70 /* SpeechSequence.swift */; };
-		388FB931306BAB0900DE3D70 /* SpeechSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB92F306BAB0900DE3D70 /* SpeechSequence.swift */; };
+		388FB930306BAB0900DE3D70 /* AmountSpeechClips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB92F306BAB0900DE3D70 /* AmountSpeechClips.swift */; };
+		388FB931306BAB0900DE3D70 /* AmountSpeechClips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB92F306BAB0900DE3D70 /* AmountSpeechClips.swift */; };
 		388FB933306BAB1600DE3D70 /* AudioComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB932306BAB1600DE3D70 /* AudioComposer.swift */; };
 		388FB934306BAB1600DE3D70 /* AudioComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB932306BAB1600DE3D70 /* AudioComposer.swift */; };
 		388FB939306BAE3800DE3D70 /* VoiceAlertDemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB938306BAE3800DE3D70 /* VoiceAlertDemoViewModel.swift */; };
 		388FB94E306BB37300DE3D70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388FB94D306BB37300DE3D70 /* AppDelegate.swift */; };
-		38EBB8F1306C98BA00B90FB3 /* SpeechSequenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EBB8F0306C98BA00B90FB3 /* SpeechSequenceTests.swift */; };
+		38EBB8F1306C98BA00B90FB3 /* AmountSpeechClipsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EBB8F0306C98BA00B90FB3 /* AmountSpeechClipsTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,14 +90,15 @@
 		388FB91D306BA88100DE3D70 /* SpeechCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechCurrency.swift; sourceTree = "<group>"; };
 		388FB921306BA8D700DE3D70 /* AppGroupStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroupStorageManager.swift; sourceTree = "<group>"; };
 		388FB92A306BAAC600DE3D70 /* AudioAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AudioAssets.xcassets; sourceTree = "<group>"; };
-		388FB92F306BAB0900DE3D70 /* SpeechSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSequence.swift; sourceTree = "<group>"; };
+		388FB92F306BAB0900DE3D70 /* AmountSpeechClips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountSpeechClips.swift; sourceTree = "<group>"; };
 		388FB932306BAB1600DE3D70 /* AudioComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioComposer.swift; sourceTree = "<group>"; };
 		388FB935306BAC6900DE3D70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		388FB938306BAE3800DE3D70 /* VoiceAlertDemoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceAlertDemoViewModel.swift; sourceTree = "<group>"; };
 		388FB940306BB32600DE3D70 /* ImplTransactionVoiceAlert.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ImplTransactionVoiceAlert.entitlements; sourceTree = "<group>"; };
 		388FB94C306BB35300DE3D70 /* NotificationService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationService.entitlements; sourceTree = "<group>"; };
 		388FB94D306BB37300DE3D70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		38EBB8F0306C98BA00B90FB3 /* SpeechSequenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSequenceTests.swift; sourceTree = "<group>"; };
+		38EBB8F0306C98BA00B90FB3 /* AmountSpeechClipsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountSpeechClipsTests.swift; sourceTree = "<group>"; };
+		38F7712D3073350B003DC4BA /* ImplTransactionVoiceAlert.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ImplTransactionVoiceAlert.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +136,7 @@
 		388FB8B7306BA76C00DE3D70 = {
 			isa = PBXGroup;
 			children = (
+				38F7712D3073350B003DC4BA /* ImplTransactionVoiceAlert.xctestplan */,
 				388FB8ED306BA77400DE3D70 /* ImplTransactionVoiceAlert */,
 				388FB8F2306BA77800DE3D70 /* ImplTransactionVoiceAlertTests */,
 				388FB8F6306BA79800DE3D70 /* ImplTransactionVoiceAlertUITests */,
@@ -173,7 +175,7 @@
 		388FB8F2306BA77800DE3D70 /* ImplTransactionVoiceAlertTests */ = {
 			isa = PBXGroup;
 			children = (
-				38EBB8F0306C98BA00B90FB3 /* SpeechSequenceTests.swift */,
+				38EBB8F0306C98BA00B90FB3 /* AmountSpeechClipsTests.swift */,
 				388FB8F1306BA77800DE3D70 /* ImplTransactionVoiceAlertTests.swift */,
 			);
 			path = ImplTransactionVoiceAlertTests;
@@ -211,7 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				388FB932306BAB1600DE3D70 /* AudioComposer.swift */,
-				388FB92F306BAB0900DE3D70 /* SpeechSequence.swift */,
+				388FB92F306BAB0900DE3D70 /* AmountSpeechClips.swift */,
 				388FB91D306BA88100DE3D70 /* SpeechCurrency.swift */,
 				388FB918306BA86E00DE3D70 /* SpeechLanguage.swift */,
 				388FB919306BA86E00DE3D70 /* SpeechVoice.swift */,
@@ -411,7 +413,7 @@
 				388FB8EE306BA77400DE3D70 /* VoiceAlertDemoView.swift in Sources */,
 				388FB91B306BA86E00DE3D70 /* SpeechLanguage.swift in Sources */,
 				388FB922306BA8F000DE3D70 /* AppGroupStorageManager.swift in Sources */,
-				388FB930306BAB0900DE3D70 /* SpeechSequence.swift in Sources */,
+				388FB930306BAB0900DE3D70 /* AmountSpeechClips.swift in Sources */,
 				388FB91C306BA86E00DE3D70 /* SpeechVoice.swift in Sources */,
 				388FB94E306BB37300DE3D70 /* AppDelegate.swift in Sources */,
 				388FB8EF306BA77400DE3D70 /* ImplTransactionVoiceAlertApp.swift in Sources */,
@@ -422,7 +424,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38EBB8F1306C98BA00B90FB3 /* SpeechSequenceTests.swift in Sources */,
+				38EBB8F1306C98BA00B90FB3 /* AmountSpeechClipsTests.swift in Sources */,
 				388FB8F3306BA77800DE3D70 /* ImplTransactionVoiceAlertTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,7 +442,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				388FB931306BAB0900DE3D70 /* SpeechSequence.swift in Sources */,
+				388FB931306BAB0900DE3D70 /* AmountSpeechClips.swift in Sources */,
 				388FB923306BAA8100DE3D70 /* SpeechCurrency.swift in Sources */,
 				388FB924306BAA8500DE3D70 /* SpeechLanguage.swift in Sources */,
 				388FB933306BAB1600DE3D70 /* AudioComposer.swift in Sources */,
@@ -600,7 +602,7 @@
 				CODE_SIGN_ENTITLEMENTS = ImplTransactionVoiceAlert/ImplTransactionVoiceAlert.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = NY28UPWMBF;
+				DEVELOPMENT_TEAM = NBSAW3G27X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ImplTransactionVoiceAlert/Info.plist;
@@ -634,7 +636,7 @@
 				CODE_SIGN_ENTITLEMENTS = ImplTransactionVoiceAlert/ImplTransactionVoiceAlert.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = NY28UPWMBF;
+				DEVELOPMENT_TEAM = NBSAW3G27X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ImplTransactionVoiceAlert/Info.plist;
@@ -761,7 +763,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lengdev.imp-ltrx-voice-alert.notification-service";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lengdev.imp-ltrx-voice-alert.notificationService";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -790,7 +792,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lengdev.imp-ltrx-voice-alert.notification-service";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lengdev.imp-ltrx-voice-alert.notificationService";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
